@@ -58,7 +58,17 @@ public class UserController {
 }
 
 
+    @GetMapping("/findAllStreams/{streamId}")
+    public List<Job> getStream(@PathVariable(value = "streamId") String streamId) throws Exception {
+        List<Job> streamJobs = jobRepository.findAllStreams(streamId.charAt(0));
+        return streamJobs;
+    }
 
+    @GetMapping("/findJobStreams/{jobCategory}/{streamId}")
+    public List<Job> getJobStream(@PathVariable int jobCategory, @PathVariable String streamId) throws Exception {
+        List<Job> jobStreamCategories = jobRepository.findJobStreams(jobCategory, streamId.charAt(0));
+        return jobStreamCategories;
+    }
 
 
 
